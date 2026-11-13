@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Logo SIGA">
+  <circle cx="60" cy="60" r="57" fill="#ffffff"/>
+  <circle cx="60" cy="60" r="50" fill="#0f2c55"/>
+  <circle cx="60" cy="60" r="50" fill="none" stroke="#2f6fd0" stroke-width="3"/>
+  <!-- birrete -->
+  <path d="M60 28 L92 42 L60 56 L28 42 Z" fill="#f2a43a"/>
+  <path d="M42 48 L42 60 C42 66 78 66 78 60 L78 48 L60 56 Z" fill="#e48b1c"/>
+  <line x1="88" y1="44" x2="88" y2="60" stroke="#f2a43a" stroke-width="2.5"/>
+  <circle cx="88" cy="62" r="3" fill="#f2a43a"/>
+  <!-- libro abierto -->
+  <path d="M30 72 C40 68 52 68 60 74 C68 68 80 68 90 72 L90 92 C80 88 68 88 60 94 C52 88 40 88 30 92 Z" fill="#ffffff"/>
+  <path d="M60 74 L60 94" stroke="#2f6fd0" stroke-width="2"/>
+  <path d="M36 77 C43 75 50 75 55 78 M36 83 C43 81 50 81 55 84 M65 78 C70 75 77 75 84 77 M65 84 C70 81 77 81 84 83" stroke="#9db8dc" stroke-width="1.6" fill="none"/>
+</svg>

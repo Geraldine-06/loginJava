@@ -1,0 +1,22 @@
+# Copy this file to src/main/resources/configuracion.properties and configure it locally.
+URL_BASE_APLICACION=http://localhost:8080/loginJava
+
+MOTOR_BD=mysql
+BD_SERVIDOR=localhost
+BD_PUERTO=3306
+BD_NOMBRE=dbsigalogin
+BD_USUARIO=usuarioSiga
+BD_CLAVE=CAMBIAR_ANTES_DE_EJECUTAR_EL_SCRIPT
+
+JWT_SECRETO=CAMBIAR_POR_UNA_CLAVE_ALEATORIA_DE_AL_MENOS_32_CARACTERES
+JWT_HORAS_EXPIRACION=2
+JWT_DIAS_RECORDAR=30
+
+CORREO_MODO=consola
+SMTP_SERVIDOR=smtp.gmail.com
+SMTP_PUERTO=587
+SMTP_USUARIO=
+SMTP_CLAVE=
+CORREO_REMITENTE=SIGA <no-responder@siga.edu.co>
+
+TOKEN_MINUTOS_EXPIRACION=15

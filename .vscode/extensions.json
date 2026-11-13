@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "vscjava.vscode-java-pack",
+    "redhat.vscode-community-server-connector",
+    "humao.rest-client",
+    "cweijan.vscode-mysql-client2",
+    "ms-mssql.mssql"
+  ]
+}

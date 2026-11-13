@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA | Nueva contraseña</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="fondo-luces" aria-hidden="true"></div>
+  <button id="botonTema" class="boton-tema" type="button">☀ <span>Modo Claro</span></button>
+
+  <main class="contenedor-acceso">
+    <header class="marca">
+      <a href="index.html"><img class="marca-logo" src="img/logo.svg" alt="Logo SIGA"></a>
+      <h1 class="marca-nombre">SIGA</h1>
+      <p class="marca-subtitulo">Sistema de Información de Gestión Académica</p>
+      <p class="marca-lema">Acceso Administrativo Seguro</p>
+    </header>
+
+    <section class="tarjeta tarjeta-centrada">
+      <div class="icono-circular" aria-hidden="true">🔑</div>
+      <h2 class="tarjeta-titulo">Crea una nueva contraseña</h2>
+      <p class="tarjeta-texto">El enlace es válido por 15 minutos y solo puede usarse una vez.</p>
+
+      <form id="formularioRestablecer" novalidate>
+        <div class="grupo-campo">
+          <label class="etiqueta" for="campoClave">Nueva contraseña</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#a9b6cb" stroke-width="2.2" fill="none"/></svg>
+            <input id="campoClave" class="campo" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+            <button type="button" class="boton-ojo" data-ojo="campoClave" aria-label="Mostrar contraseña">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#a9b6cb" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div id="campoClaveMensaje" class="mensaje-campo"></div>
+        </div>
+        <div class="grupo-campo">
+          <label class="etiqueta" for="campoConfirmar">Confirmar contraseña</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#a9b6cb" stroke-width="2.2" fill="none"/></svg>
+            <input id="campoConfirmar" class="campo" type="password" autocomplete="new-password" placeholder="Repita la contraseña">
+          </div>
+          <div id="campoConfirmarMensaje" class="mensaje-campo"></div>
+        </div>
+
+        <button id="botonGuardar" class="boton-primario" type="submit">Guardar nueva contraseña</button>
+      </form>
+
+      <a class="enlace-volver" href="login.html">← Volver al Inicio de Sesión</a>
+    </section>
+  </main>
+
+  <script src="js/configuracion.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/restablecer.js"></script>
+</body>
+</html>

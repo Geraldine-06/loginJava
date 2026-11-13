@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA | Bienvenida</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="fondo-luces" aria-hidden="true"></div>
+  <button id="botonTema" class="boton-tema" type="button">☀ <span>Modo Claro</span></button>
+
+  <main class="contenedor-acceso">
+    <header class="marca">
+      <img class="marca-logo" src="img/logo.svg" alt="Logo SIGA">
+      <h1 class="marca-nombre">SIGA</h1>
+      <p class="marca-subtitulo">Sistema de Información de Gestión Académica</p>
+    </header>
+
+    <section class="tarjeta tarjeta-ancha tarjeta-centrada">
+      <div class="emoji-grande">👋</div>
+      <h2 class="tarjeta-titulo">¡Bienvenido(a), <span id="nombreUsuario">...</span>!</h2>
+      <p class="tarjeta-texto">Iniciaste sesión correctamente. Tu sesión está protegida con un token JWT.</p>
+
+      <div class="dato-perfil"><span>Nombre</span><span id="datoNombre">-</span></div>
+      <div class="dato-perfil"><span>Correo</span><span id="datoCorreo">-</span></div>
+      <div class="dato-perfil"><span>Tipo de usuario</span><span id="datoTipo">-</span></div>
+      <div class="dato-perfil"><span>Backend que respondió</span><span id="datoBackend">-</span></div>
+
+      <div class="insignia-taller">
+        <strong>🚀 Próximo taller</strong>
+        <span>Incorporación de Dashboard con CRUD</span>
+      </div>
+
+      <button id="botonCerrarSesion" class="boton-secundario" type="button">Cerrar sesión</button>
+    </section>
+  </main>
+
+  <script src="js/configuracion.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/bienvenida.js"></script>
+</body>
+</html>

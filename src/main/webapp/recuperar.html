@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA | Recuperar contraseña</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="fondo-luces" aria-hidden="true"></div>
+  <button id="botonTema" class="boton-tema" type="button">☀ <span>Modo Claro</span></button>
+
+  <main class="contenedor-acceso">
+    <header class="marca">
+      <a href="index.html"><img class="marca-logo" src="img/logo.svg" alt="Logo SIGA"></a>
+      <h1 class="marca-nombre">SIGA</h1>
+      <p class="marca-subtitulo">Sistema de Información de Gestión Académica</p>
+      <p class="marca-lema">Acceso Administrativo Seguro</p>
+    </header>
+
+    <section class="tarjeta tarjeta-centrada">
+      <div class="icono-circular" aria-hidden="true">⟲</div>
+      <h2 class="tarjeta-titulo">¿Olvidaste tu contraseña?</h2>
+      <p class="tarjeta-texto">Ingresa tu correo electrónico para recibir un enlace de recuperación</p>
+
+      <form id="formularioRecuperar" novalidate>
+        <div class="grupo-campo">
+          <label class="etiqueta etiqueta-mayuscula" for="campoCorreo">Correo electrónico</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><path d="M2 5h20v14H2z" opacity=".9"/><path d="M2 5l10 8 10-8" stroke="#1b2436" stroke-width="2" fill="none"/></svg>
+            <input id="campoCorreo" class="campo" type="email" autocomplete="email" placeholder="ejemplo@institucion.edu">
+          </div>
+          <div id="campoCorreoMensaje" class="mensaje-campo"></div>
+        </div>
+
+        <button id="botonEnviar" class="boton-primario" type="submit">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+          Enviar Instrucciones
+        </button>
+      </form>
+
+      <a class="enlace-volver" href="login.html">← Volver al Inicio de Sesión</a>
+    </section>
+
+    <footer class="pie-acceso">
+      <a href="#">Política de Privacidad</a> • <a href="#">Términos de Servicio</a> • <span>v2.4.0</span>
+    </footer>
+  </main>
+
+  <script src="js/configuracion.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/recuperar.js"></script>
+</body>
+</html>

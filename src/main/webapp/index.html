@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SIGA - Sistema de Información de Gestión Académica">
+  <title>SIGA | Gestión Académica</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="fondo-luces" aria-hidden="true"></div>
+  <button id="botonTema" class="boton-tema" type="button">☀ <span>Modo Claro</span></button>
+
+  <!-- Barra de navegación -->
+  <nav class="barra-navegacion">
+    <a class="barra-marca" href="index.html"><img src="img/logo.svg" alt="">SIGA</a>
+    <div class="barra-enlaces">
+      <a href="#caracteristicas">Características</a>
+      <a href="#comoFunciona">Cómo funciona</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="barra-acciones">
+      <a class="boton-contorno" href="login.html">Iniciar sesión</a>
+      <a class="boton-relleno" href="registro.html">Crear cuenta</a>
+    </div>
+  </nav>
+
+  <!-- Sección héroe -->
+  <header class="seccion heroe">
+    <div>
+      <span class="heroe-etiqueta">Plataforma institucional · v2.4.0</span>
+      <h1>Gestión académica <em>moderna</em> y <em>segura</em> para tu institución</h1>
+      <p>SIGA centraliza el acceso de administradores, coordinadores, directivos, secretarías y docentes en un solo portal, con contraseñas cifradas, sesiones con JWT y recuperación de cuenta por correo electrónico.</p>
+      <div class="heroe-botones">
+        <a class="boton-relleno" href="login.html">Ingresar al portal →</a>
+        <a class="boton-contorno" href="registro.html">Crear una cuenta</a>
+      </div>
+    </div>
+    <div class="heroe-visual" aria-hidden="true">
+      <div class="tarjeta-demo">
+        <strong>Iniciar Sesión</strong>
+        <div class="linea-demo corta"></div>
+        <div class="linea-demo"></div>
+        <div class="linea-demo"></div>
+        <div class="linea-demo azul"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Características -->
+  <section id="caracteristicas" class="seccion">
+    <div class="titulo-seccion">
+      <h2>¿Qué incluye este módulo?</h2>
+      <p>El mismo frontend funciona con tres backends: Python Flask, Java (Maven + Tomcat) y Node.js.</p>
+    </div>
+    <div class="rejilla-caracteristicas">
+      <article class="caracteristica"><div class="icono">🔐</div><h3>Contraseñas con hash</h3><p>Las claves se guardan cifradas con BCrypt; nunca en texto plano.</p></article>
+      <article class="caracteristica"><div class="icono">🎫</div><h3>Sesión con JWT</h3><p>Al ingresar recibes un token firmado que identifica tu sesión.</p></article>
+      <article class="caracteristica"><div class="icono">✉️</div><h3>Recuperación por correo</h3><p>Enlace con token de un solo uso que vence en 15 minutos.</p></article>
+      <article class="caracteristica"><div class="icono">🧩</div><h3>Arquitectura MVC</h3><p>Modelo, Vista y Controlador separados para un código ordenado.</p></article>
+    </div>
+  </section>
+
+  <!-- Cómo funciona -->
+  <section id="comoFunciona" class="seccion">
+    <div class="titulo-seccion">
+      <h2>¿Cómo funciona?</h2>
+      <p>Tres pasos para empezar a usar SIGA.</p>
+    </div>
+    <div class="pasos">
+      <div class="paso"><h3>Crea tu cuenta</h3><p>Elige tu tipo de usuario y registra tus datos.</p></div>
+      <div class="paso"><h3>Inicia sesión</h3><p>Ingresa con tu documento o correo y tu contraseña.</p></div>
+      <div class="paso"><h3>Trabaja seguro</h3><p>Si olvidas la clave, recupérala desde tu correo.</p></div>
+    </div>
+  </section>
+
+  <!-- Llamado a la acción -->
+  <section id="contacto" class="seccion">
+    <div class="banda-llamado">
+      <h2>¿Listo para comenzar?</h2>
+      <p>Próximo taller: incorporación de Dashboard con CRUD.</p>
+      <a class="boton-contorno" style="color:#fff;border-color:#fff" href="registro.html">Crear cuenta gratis</a>
+    </div>
+  </section>
+
+  <footer class="pie-pagina">© 2026 SIGA · Sistema de Información de Gestión Académica · Proyecto formativo</footer>
+
+  <script src="js/configuracion.js"></script>
+  <script src="js/utilidades.js"></script>
+</body>
+</html>

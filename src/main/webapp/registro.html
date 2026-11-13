@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA | Crear cuenta</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <div class="fondo-luces" aria-hidden="true"></div>
+  <button id="botonTema" class="boton-tema" type="button">☀ <span>Modo Claro</span></button>
+
+  <main class="contenedor-acceso">
+    <header class="marca">
+      <a href="index.html"><img class="marca-logo" src="img/logo.svg" alt="Logo SIGA"></a>
+      <h1 class="marca-nombre">SIGA</h1>
+      <p class="marca-subtitulo">Sistema de Información de Gestión Académica</p>
+      <p class="marca-lema">Registro de nuevos usuarios</p>
+    </header>
+
+    <section class="tarjeta tarjeta-ancha">
+      <h2 class="tarjeta-titulo">Crear Cuenta</h2>
+      <p class="tarjeta-texto">Complete el formulario. Todos los campos son obligatorios.</p>
+
+      <form id="formularioRegistro" novalidate>
+        <div class="grupo-campo">
+          <span class="etiqueta">Tipo de usuario</span>
+          <div id="selectorTipo" class="selector-tipo" role="group" aria-label="Tipo de usuario">
+            <button type="button" class="chip-tipo" data-tipo="Administrador" aria-pressed="false">Administrador</button>
+            <button type="button" class="chip-tipo" data-tipo="Coordinador" aria-pressed="false">Coordinador</button>
+            <button type="button" class="chip-tipo" data-tipo="Directivo" aria-pressed="false">Directivo</button>
+            <button type="button" class="chip-tipo" data-tipo="Secretario" aria-pressed="false">Secretario(a)</button>
+            <button type="button" class="chip-tipo" data-tipo="Docente" aria-pressed="false">Docente</button>
+          </div>
+        </div>
+
+        <div class="grupo-campo">
+          <label class="etiqueta" for="campoNombre">Nombre completo</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><circle cx="12" cy="8" r="4.5"/><path d="M3 21c0-5 4-8 9-8s9 3 9 8z"/></svg>
+            <input id="campoNombre" class="campo" type="text" autocomplete="name" placeholder="ej. Laura Gómez Pérez">
+          </div>
+          <div id="campoNombreMensaje" class="mensaje-campo"></div>
+        </div>
+
+        <div class="grupo-campo">
+          <label class="etiqueta" for="campoDocumento">Documento de identidad</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2.5" fill="#1b2436"/><path d="M13 10h6M13 14h4" stroke="#1b2436" stroke-width="2"/></svg>
+            <input id="campoDocumento" class="campo" type="text" inputmode="numeric" placeholder="ej. 1012345678">
+          </div>
+          <div id="campoDocumentoMensaje" class="mensaje-campo"></div>
+        </div>
+
+        <div class="grupo-campo">
+          <label class="etiqueta" for="campoCorreo">Correo electrónico</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><path d="M2 5h20v14H2z"/><path d="M2 5l10 8 10-8" stroke="#1b2436" stroke-width="2" fill="none"/></svg>
+            <input id="campoCorreo" class="campo" type="email" autocomplete="email" placeholder="nombre@institucion.edu">
+          </div>
+          <div id="campoCorreoMensaje" class="mensaje-campo"></div>
+        </div>
+
+        <div class="grupo-campo">
+          <label class="etiqueta" for="campoClave">Contraseña</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#a9b6cb" stroke-width="2.2" fill="none"/></svg>
+            <input id="campoClave" class="campo" type="password" autocomplete="new-password" placeholder="Mínimo 8 caracteres">
+            <button type="button" class="boton-ojo" data-ojo="campoClave" aria-label="Mostrar contraseña">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#a9b6cb" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <div class="medidor"><div id="medidorBarra" class="medidor-barra"></div></div>
+          <div id="medidorTexto" class="medidor-texto"></div>
+          <div id="campoClaveMensaje" class="mensaje-campo"></div>
+        </div>
+
+        <div class="grupo-campo">
+          <label class="etiqueta" for="campoConfirmar">Confirmar contraseña</label>
+          <div class="campo-con-icono">
+            <svg class="icono-campo" viewBox="0 0 24 24" fill="#a9b6cb"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="#a9b6cb" stroke-width="2.2" fill="none"/></svg>
+            <input id="campoConfirmar" class="campo" type="password" autocomplete="new-password" placeholder="Repita la contraseña">
+          </div>
+          <div id="campoConfirmarMensaje" class="mensaje-campo"></div>
+        </div>
+
+        <label class="casilla"><input id="casillaTerminos" type="checkbox"> Acepto la política de privacidad y los términos de servicio</label>
+
+        <button id="botonRegistrar" class="boton-primario" type="submit">
+          <svg viewBox="0 0 24 24" fill="#fff"><circle cx="9" cy="8" r="4"/><path d="M1 21c0-4 3.5-7 8-7s8 3 8 7zM19 8v6M16 11h6" stroke="#fff" stroke-width="2"/></svg>
+          Crear mi cuenta
+        </button>
+      </form>
+
+      <div class="separador"></div>
+      <p class="texto-ayuda">¿Ya tiene cuenta? <a href="login.html">Iniciar sesión</a></p>
+    </section>
+
+    <footer class="pie-acceso">
+      <a href="#">Política de Privacidad</a> • <a href="#">Términos de Servicio</a> • <span>v2.4.0</span>
+    </footer>
+  </main>
+
+  <!-- Ventana de bienvenida que aparece cuando el registro es exitoso -->
+  <div id="modalBienvenida" class="modal-fondo" role="dialog" aria-modal="true" aria-labelledby="tituloBienvenida">
+    <div class="modal-caja">
+      <div class="emoji-grande">🎉</div>
+      <h2 id="tituloBienvenida">¡Bienvenido(a), <span id="nombreBienvenida"></span>!</h2>
+      <p>Tu cuenta fue creada correctamente. Ya puedes iniciar sesión en SIGA.</p>
+      <div class="insignia-taller">
+        <strong>Próximo taller</strong>
+        <span>Incorporación de Dashboard con CRUD</span>
+      </div>
+      <a class="boton-primario" href="login.html" style="text-decoration:none">Ir a Iniciar Sesión</a>
+    </div>
+  </div>
+
+  <script src="js/configuracion.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

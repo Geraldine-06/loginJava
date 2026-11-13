@@ -1,0 +1,51 @@
+### =====================================================================
+### Pruebas de la API con la extensión "REST Client" de VS Code.
+### Haga clic en "Send Request" encima de cada petición.
+### Cambie el puerto si usa otro backend:  Flask 5000 | Node 3000 | Java 8080/loginJava
+### =====================================================================
+@urlBase = http://localhost:8080/loginJava/api/autenticacion
+ 
+### 1. Registrar un usuario
+POST {{urlBase}}/registro
+Content-Type: application/json
+ 
+{
+  "tipoUsuario": "Docente",
+  "nombreCompleto": "Laura Gómez Pérez",
+  "documento": "1012345678",
+  "correo": "laura@institucion.edu",
+  "clave": "Clave1234",
+  "confirmarClave": "Clave1234"
+}
+ 
+### 2. Iniciar sesión (copie el "token" de la respuesta)
+# @name respuestaLogin
+POST {{urlBase}}/login
+Content-Type: application/json
+ 
+{
+  "usuario": "admin@siga.edu.co",
+  "clave": "Admin123*",
+  "tipoUsuario": "Administrador",
+  "recordarDispositivo": false
+}
+ 
+### 3. Consultar el perfil con el JWT
+GET {{urlBase}}/perfil
+Authorization: Bearer {{respuestaLogin.response.body.datos.token}}
+ 
+### 4. Solicitar recuperación (mire la terminal si CORREO_MODO=consola)
+POST {{urlBase}}/recuperar
+Content-Type: application/json
+ 
+{ "correo": "admin@siga.edu.co" }
+ 
+### 5. Restablecer la contraseña (pegue el token del enlace)
+POST {{urlBase}}/restablecer
+Content-Type: application/json
+ 
+{
+  "token": "PEGUE_AQUI_EL_TOKEN_DEL_ENLACE",
+  "nuevaClave": "Admin123*",
+  "confirmarClave": "Admin123*"
+}
