@@ -1,13 +1,14 @@
 package co.edu.siga.servicio;
- 
+
 import at.favre.lib.crypto.bcrypt.BCrypt;
 import co.edu.siga.configuracion.Configuracion;
 import co.edu.siga.modelo.Usuario;
+import co.edu.siga.servicio.excepciones.ErrorPermiso;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
- 
+
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -18,7 +19,8 @@ import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 import java.util.HexFormat;
- 
+import java.util.List;
+
 /**
  * SeguridadServicio  -  Paquete SERVICIO
  * Todo lo criptográfico en un solo lugar:
@@ -27,17 +29,17 @@ import java.util.HexFormat;
  *  - Token de recuperación aleatorio + su hash SHA-256.
  */
 public final class SeguridadServicio {
- 
+
     private static final int COSTO_BCRYPT = 10;
     private static final SecureRandom generadorAleatorio = new SecureRandom();
- 
+
     private SeguridadServicio() { }
- 
+
     // ---------------- Contraseñas (BCrypt) ----------------
     public static String generarHashClave(String clavePlana) {
         return BCrypt.withDefaults().hashToString(COSTO_BCRYPT, clavePlana.toCharArray());
     }
- 
+
     public static boolean verificarClave(String clavePlana, String claveHash) {
         try {
             return BCrypt.verifyer().verify(clavePlana.toCharArray(), claveHash).verified;
@@ -46,7 +48,7 @@ public final class SeguridadServicio {
             return false;
         }
     }
- 
+
     // ---------------- JWT (sesión) ----------------
     private static SecretKey obtenerClaveFirma() {
         byte[] bytesSecreto = Configuracion.jwtSecreto().getBytes(StandardCharsets.UTF_8);
@@ -55,7 +57,7 @@ public final class SeguridadServicio {
         }
         return Keys.hmacShaKeyFor(bytesSecreto);
     }
- 
+
     public static String generarJwt(Usuario usuario, boolean recordarDispositivo) {
         Instant fechaActual = Instant.now();
         Duration duracion = recordarDispositivo
@@ -71,7 +73,7 @@ public final class SeguridadServicio {
                 .signWith(obtenerClaveFirma())                     // HS256
                 .compact();
     }
- 
+
     /** Devuelve la carga útil (Claims) si la firma y la fecha son válidas; si no, null. */
     public static Claims verificarJwt(String tokenSesion) {
         try {
@@ -85,20 +87,46 @@ public final class SeguridadServicio {
             return null;
         }
     }
- 
+
     // ---------------- Token de recuperación ----------------
     public static String generarTokenRecuperacion() {
         byte[] bytesAleatorios = new byte[32];
         generadorAleatorio.nextBytes(bytesAleatorios);
         return Base64.getUrlEncoder().withoutPadding().encodeToString(bytesAleatorios);
     }
- 
+
     public static String calcularHashToken(String tokenPlano) {
         try {
             MessageDigest resumen = MessageDigest.getInstance("SHA-256");
             return HexFormat.of().formatHex(resumen.digest(tokenPlano.getBytes(StandardCharsets.UTF_8)));
         } catch (NoSuchAlgorithmException errorAlgoritmo) {
             throw new IllegalStateException("SHA-256 no disponible", errorAlgoritmo);
+        }
+    }
+
+    // =====================================================================
+    //  TALLER 2 - Autorización por PERFIL (rol)
+    //  Autenticación = ¿quién es?          (FiltroJwt)
+    //  Autorización  = ¿qué puede hacer?   (exigirPermisoGestion)
+    //  Solo el Coordinador crea, edita y elimina; los demás perfiles consultan.
+    //  Para dar permiso a otro perfil basta agregarlo a esta lista.
+    // =====================================================================
+    public static final List<String> ROLES_GESTION_CRUD = List.of("Coordinador");
+
+    /** true si el perfil puede crear, editar y eliminar en el dashboard. */
+    public static boolean puedeGestionar(String tipoUsuario) {
+        return ValidadorDatos.estaEnLista(tipoUsuario, ROLES_GESTION_CRUD);
+    }
+
+    /**
+     * Equivale al decorador @requiereGestion de Flask: se llama DESPUÉS del FiltroJwt
+     * (necesita la carga útil del token) y rechaza con 403 a los perfiles de solo consulta.
+     */
+    public static void exigirPermisoGestion(Claims cargaUtil) {
+        String tipoUsuario = String.valueOf(cargaUtil.getOrDefault("tipoUsuario", ""));
+        if (!puedeGestionar(tipoUsuario)) {
+            throw new ErrorPermiso("Su perfil (" + tipoUsuario + ") solo puede consultar. "
+                    + "Crear, editar y eliminar es exclusivo del Coordinador.");
         }
     }
 }

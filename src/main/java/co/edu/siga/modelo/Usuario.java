@@ -1,15 +1,19 @@
 package co.edu.siga.modelo;
- 
+
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedHashMap;
 import java.util.Map;
- 
+
 /**
  * Usuario  -  Paquete MODELO (entidad / POJO)
  * Representa una fila de la tabla "usuario". Atributos privados + getters/setters (encapsulamiento).
  */
 public class Usuario {
- 
+
+    /** Taller 2: las fechas viajan en el JSON como texto "AAAA-MM-DD HH:MM:SS". */
+    private static final DateTimeFormatter FORMATO_FECHA_HORA = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private Integer idUsuario;
     private String nombreCompleto;
     private String documento;
@@ -19,9 +23,9 @@ public class Usuario {
     private boolean estado = true;
     private LocalDateTime fechaCreacion;
     private LocalDateTime ultimoIngreso;
- 
+
     public Usuario() { }
- 
+
     public Usuario(String nombreCompleto, String documento, String correo, String claveHash, String tipoUsuario) {
         this.nombreCompleto = nombreCompleto;
         this.documento = documento;
@@ -29,7 +33,7 @@ public class Usuario {
         this.claveHash = claveHash;
         this.tipoUsuario = tipoUsuario;
     }
- 
+
     /** Datos que se pueden enviar al navegador (nunca el claveHash). */
     public Map<String, Object> aMapaPublico() {
         Map<String, Object> datosPublicos = new LinkedHashMap<>();
@@ -40,7 +44,16 @@ public class Usuario {
         datosPublicos.put("tipoUsuario", tipoUsuario);
         return datosPublicos;
     }
- 
+
+    /** Taller 2: datos para la tabla de "Gestión de Usuarios" (tampoco incluye el claveHash). */
+    public Map<String, Object> aMapaGestion() {
+        Map<String, Object> datosGestion = aMapaPublico();
+        datosGestion.put("estado", estado ? "Activo" : "Inactivo");
+        datosGestion.put("fechaCreacion", fechaCreacion == null ? null : fechaCreacion.format(FORMATO_FECHA_HORA));
+        datosGestion.put("ultimoIngreso", ultimoIngreso == null ? null : ultimoIngreso.format(FORMATO_FECHA_HORA));
+        return datosGestion;
+    }
+
     public Integer getIdUsuario() { return idUsuario; }
     public void setIdUsuario(Integer idUsuario) { this.idUsuario = idUsuario; }
     public String getNombreCompleto() { return nombreCompleto; }

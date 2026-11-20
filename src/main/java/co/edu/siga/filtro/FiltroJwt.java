@@ -1,5 +1,5 @@
 package co.edu.siga.filtro;
- 
+
 import co.edu.siga.controlador.RespuestaJson;
 import co.edu.siga.servicio.SeguridadServicio;
 import io.jsonwebtoken.Claims;
@@ -9,16 +9,20 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
- 
+
 import java.io.IOException;
- 
+
 /**
  * FiltroJwt  -  Filtro de seguridad (se ejecuta ANTES del servlet).
  * Protege las rutas privadas exigiendo:  Authorization: Bearer <jwt>
+ * Taller 2: también protege TODAS las rutas del dashboard. "/api/areas/*" cubre
+ * /api/areas y /api/areas/7. La autorización por perfil (solo Coordinador
+ * modifica) se revisa después, en ControladorBase.
  */
-@WebFilter(urlPatterns = {"/api/autenticacion/perfil"})
+@WebFilter(urlPatterns = {"/api/autenticacion/perfil", "/api/dashboard/*", "/api/usuarios/*",
+        "/api/funcionarios/*", "/api/alumnos/*", "/api/areas/*", "/api/materias/*"})
 public class FiltroJwt extends HttpFilter {
- 
+
     @Override
     protected void doFilter(HttpServletRequest peticion, HttpServletResponse respuesta, FilterChain cadenaFiltros)
             throws IOException, ServletException {

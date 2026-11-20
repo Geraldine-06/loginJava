@@ -21,3 +21,22 @@ Requiere JDK 25 LTS para compilar y ejecutar.
 - `ValidadorDatos`: límite de la clave en 71 bytes (lo máximo que admite BCrypt).
 - `TokenRecuperacionModelo` + `AutenticacionControlador`: el token se marca como usado con un UPDATE condicional ANTES de cambiar la clave → un solo uso garantizado.
 - `RespuestaJson.leerTexto`: si un campo llega como objeto/arreglo responde 400 y no 500.
+
+---
+
+## Taller 2 — Dashboard con CRUD (agregado sobre este proyecto)
+
+Después de iniciar sesión, el usuario llega a `dashboard.html`. El dashboard tiene cinco módulos CRUD: Usuarios, Funcionarios, Alumnos, Áreas y Materias. Solo el **Coordinador** puede crear, editar y eliminar; los demás perfiles solo consultan.
+
+### Pasos
+1. AMPPS encendido (MySQL 8, `root` / `mysql`). `configuracion.properties` ya está cambiado a root/mysql y conserva tu `JWT_SECRETO`.
+2. Si la base no existe, ejecuta `db/scriptMysql.sql` (taller 1).
+3. Ejecuta `db/scriptModificacionMysql.sql`: crea funcionario, alumno, area y materia, más el usuario Coordinador y datos de ejemplo. Es opcional ejecutar `db/scriptImportarDbsiga2022.sql`.
+4. `mvn clean package`, copia `target/loginJava.war` a Tomcat y abre http://localhost:8080/loginJava/login.html
+5. Ingresa como **Coordinador** con `coordinador@siga.edu.co` / `Admin123*`. Para ver el modo solo consulta, ingresa como Administrador con `admin@siga.edu.co` / `Admin123*`.
+6. Prueba la API con `pruebasApi.http` (REST Client).
+
+### Archivos del taller 2
+- ★ Nuevos: `servicio/excepciones/` (10 clases), `modelo/EntidadBase` + Funcionario, Alumno, Area, Materia y sus `*Modelo`, `DashboardModelo`, `controlador/ControladorBase` + un servlet por módulo + `DashboardControlador`, `dashboard.html`, `css/dashboard.css`, `js/ventanaModal.js`, `js/modulosDashboard.js`, `js/crudModulo.js`, `js/dashboard.js`, los scripts `db/scriptModificacion*.sql` y `db/scriptImportarDbsiga2022.sql`, y `diagramas/`.
+- ✎ Actualizados: `ConexionBd`, `Usuario`, `UsuarioModelo`, `ValidadorDatos`, `SeguridadServicio`, `RespuestaJson`, `AutenticacionControlador`, `FiltroJwt`, `configuracion.properties`, `configuracion.js`, `utilidades.js`, `login.js`, `bienvenida.js` y `pruebasApi.http`.
+- Se conservaron las mejoras del taller 1: el try/catch de BCrypt, la exigencia de mínimo 32 caracteres en JWT_SECRETO, el límite de 71 bytes de la clave, que el token se marque como usado antes de cambiar la clave, y que `leerTexto` solo acepte valores simples.

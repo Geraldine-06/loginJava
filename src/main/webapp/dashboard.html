@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es" data-tema="oscuro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIGA | Dashboard</title>
+  <link rel="icon" href="img/logo.svg">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body class="cuerpo-dashboard">
+
+  <!-- ============ Iconos (se reutilizan con <use href="#icono-...">) ============ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="icono-inicio" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+    <symbol id="icono-usuarios" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0 1 14 0v1"/><path d="M19 8v6M16 11h6"/></symbol>
+    <symbol id="icono-funcionarios" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+    <symbol id="icono-alumnos" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5M22 9v6"/></symbol>
+    <symbol id="icono-areas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+    <symbol id="icono-materias" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/><path d="M4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5"/></symbol>
+    <symbol id="icono-agregar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+    <symbol id="icono-ver" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icono-editar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    <symbol id="icono-eliminar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6M10 11v6M14 11v6"/></symbol>
+    <symbol id="icono-buscar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+    <symbol id="icono-salir" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></symbol>
+    <symbol id="icono-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></symbol>
+    <symbol id="icono-tema" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  </svg>
+
+  <div class="dashboard">
+    <!-- ================= BARRA LATERAL (menú de módulos) ================= -->
+    <aside id="barraLateral" class="lateral" aria-label="Menú principal">
+      <div class="lateral-marca">
+        <img src="img/logo.svg" alt="">
+        <div><strong>SIGA</strong><span>Gestión Académica</span></div>
+      </div>
+      <nav id="menuModulos">
+        <button class="lateral-enlace activo" data-vista="inicio" type="button"><svg><use href="#icono-inicio"/></svg>Inicio</button>
+        <p class="lateral-titulo">Gestión</p>
+        <button class="lateral-enlace" data-vista="usuarios" type="button"><svg><use href="#icono-usuarios"/></svg>Usuarios</button>
+        <button class="lateral-enlace" data-vista="funcionarios" type="button"><svg><use href="#icono-funcionarios"/></svg>Funcionarios</button>
+        <button class="lateral-enlace" data-vista="alumnos" type="button"><svg><use href="#icono-alumnos"/></svg>Alumnos</button>
+        <p class="lateral-titulo">Académico</p>
+        <button class="lateral-enlace" data-vista="areas" type="button"><svg><use href="#icono-areas"/></svg>Áreas</button>
+        <button class="lateral-enlace" data-vista="materias" type="button"><svg><use href="#icono-materias"/></svg>Materias</button>
+      </nav>
+      <div class="lateral-pie">
+        <strong id="pieBackend">Backend</strong>
+        <span id="piePermiso">Verificando permisos...</span>
+      </div>
+    </aside>
+
+    <div class="contenido">
+      <!-- ================= BARRA SUPERIOR ================= -->
+      <header class="superior">
+        <button id="botonMenu" class="boton-icono boton-menu" type="button" aria-label="Abrir menú"><svg><use href="#icono-menu"/></svg></button>
+        <div class="superior-titulo">
+          <small id="textoFecha">&nbsp;</small>
+          <h1 id="tituloVista">Inicio</h1>
+        </div>
+        <button id="botonTema" class="boton-icono boton-tema-panel" type="button" aria-label="Cambiar tema"><svg><use href="#icono-tema"/></svg><span>Modo Claro</span></button>
+        <div class="usuario-chip">
+          <div id="avatarUsuario" class="usuario-avatar">--</div>
+          <div class="usuario-datos"><strong id="nombreUsuario">...</strong><span id="tipoUsuario">...</span></div>
+        </div>
+        <button id="botonCerrarSesion" class="boton-icono" type="button" aria-label="Cerrar sesión" title="Cerrar sesión"><svg><use href="#icono-salir"/></svg></button>
+      </header>
+
+      <!-- ================= VISTA: INICIO ================= -->
+      <main>
+        <section id="vistaInicio" class="vista">
+          <div class="bienvenida-panel">
+            <div>
+              <h2>¡Hola, <span id="saludoNombre">...</span>!</h2>
+              <p>Este es el resumen de la institución. Seleccione un módulo en el menú o en las tarjetas.</p>
+            </div>
+            <span id="insigniaPermiso" class="insignia-permiso">...</span>
+          </div>
+
+          <div id="rejillaIndicadores" class="rejilla-indicadores" aria-live="polite"></div>
+
+          <div class="rejilla-graficas">
+            <article class="tarjeta-panel">
+              <h3>Materias por área</h3>
+              <p>Cantidad de materias registradas en cada área</p>
+              <ul id="graficaMaterias" class="grafica-barras"></ul>
+            </article>
+            <article class="tarjeta-panel">
+              <h3>Usuarios por perfil</h3>
+              <p>Cuentas con acceso al sistema</p>
+              <ul id="graficaUsuarios" class="grafica-barras"></ul>
+            </article>
+            <article class="tarjeta-panel">
+              <h3>Alumnos por sexo</h3>
+              <p>Total de alumnos registrados</p>
+              <ul id="graficaAlumnos" class="grafica-barras"></ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= VISTA: MÓDULO CRUD (se reutiliza para los 5 módulos) ================= -->
+        <section id="vistaModulo" class="vista" hidden>
+          <div class="modulo-encabezado">
+            <div>
+              <h2 id="moduloTitulo">Módulo</h2>
+              <p id="moduloDescripcion"></p>
+            </div>
+            <button id="botonNuevo" class="boton-accion" type="button"><svg><use href="#icono-agregar"/></svg><span>Nuevo</span></button>
+            <span id="avisoConsulta" class="aviso-consulta" hidden>🔒 Modo consulta: solo el Coordinador puede crear, editar o eliminar</span>
+          </div>
+
+          <div class="herramientas">
+            <div class="buscador">
+              <svg><use href="#icono-buscar"/></svg>
+              <input id="campoBuscar" class="control-panel" type="search" placeholder="Buscar en la tabla..." aria-label="Buscar">
+            </div>
+            <select id="filtroEstado" class="control-panel filtro-estado" aria-label="Filtrar por estado">
+              <option value="">Todos los estados</option>
+              <option value="Activo">Activos</option>
+              <option value="Inactivo">Inactivos</option>
+            </select>
+            <span id="contadorRegistros" class="contador-registros"></span>
+          </div>
+          <div class="marco-tabla">
+            <table class="tabla-datos">
+              <thead><tr id="encabezadoTabla"></tr></thead>
+              <tbody id="cuerpoTabla"></tbody>
+            </table>
+          </div>
+          <div class="paginacion">
+            <span id="textoPaginacion"></span>
+            <div id="botonesPaginacion" class="paginacion-botones"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= VENTANA MODAL: FORMULARIO (crear / editar) ================= -->
+  <div id="modalFormulario" class="ventana-modal" role="dialog" aria-modal="true" aria-labelledby="modalFormularioTitulo">
+    <form id="formularioModal" class="modal-contenedor" novalidate>
+      <div class="modal-cabecera">
+        <span class="indicador-icono"><svg><use id="modalFormularioIcono" href="#icono-agregar"/></svg></span>
+        <h2 id="modalFormularioTitulo">Nuevo registro</h2>
+        <button class="modal-cerrar" type="button" data-cerrar-modal aria-label="Cerrar">×</button>
+      </div>
+      <div class="modal-cuerpo">
+        <div id="alertaFormulario" class="alerta-modal" role="alert"></div>
+        <div id="camposFormulario" class="formulario-rejilla"></div>
+      </div>
+      <div class="modal-pie">
+        <button class="boton-accion boton-neutro" type="button" data-cerrar-modal>Cancelar</button>
+        <button id="botonGuardar" class="boton-accion" type="submit">Guardar</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ================= VENTANA MODAL: DETALLE (consultar) ================= -->
+  <div id="modalDetalle" class="ventana-modal" role="dialog" aria-modal="true" aria-labelledby="modalDetalleTitulo">
+    <div class="modal-contenedor">
+      <div class="modal-cabecera">
+        <span class="indicador-icono"><svg><use href="#icono-ver"/></svg></span>
+        <h2 id="modalDetalleTitulo">Detalle</h2>
+        <button class="modal-cerrar" type="button" data-cerrar-modal aria-label="Cerrar">×</button>
+      </div>
+      <div class="modal-cuerpo"><dl id="listaDetalle" class="lista-detalle"></dl></div>
+      <div class="modal-pie"><button class="boton-accion boton-neutro" type="button" data-cerrar-modal>Cerrar</button></div>
+    </div>
+  </div>
+
+  <!-- ================= VENTANA MODAL: CONFIRMAR ELIMINACIÓN ================= -->
+  <div id="modalConfirmar" class="ventana-modal" role="alertdialog" aria-modal="true" aria-labelledby="modalConfirmarTitulo">
+    <div class="modal-contenedor modal-pequena">
+      <div class="modal-cuerpo texto-centrado">
+        <div class="confirmar-icono">!</div>
+        <h2 id="modalConfirmarTitulo" style="margin:0 0 6px;font-size:18px">¿Eliminar registro?</h2>
+        <p id="textoConfirmar" class="texto-suave"></p>
+      </div>
+      <div class="modal-pie">
+        <button class="boton-accion boton-neutro" type="button" data-cerrar-modal>Cancelar</button>
+        <button id="botonConfirmarEliminar" class="boton-accion boton-peligro" type="button">Sí, eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/configuracion.js"></script>
+  <script src="js/utilidades.js"></script>
+  <script src="js/ventanaModal.js"></script>
+  <script src="js/modulosDashboard.js"></script>
+  <script src="js/crudModulo.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

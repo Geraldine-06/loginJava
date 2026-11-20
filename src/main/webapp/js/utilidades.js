@@ -48,14 +48,26 @@ function mostrarNotificacion(mensaje, tipoNotificacion = "info") {
 }
 
 /* ---------- Comunicación con el backend (fetch + JSON) ---------- */
+// Rutas de autenticación (login, perfil...): agrega el prefijo "api/autenticacion".
 async function enviarPeticion(rutaRecurso, metodoHttp = "GET", cuerpoDatos = null) {
+  return consumirApi(`${configuracionApp.urlApi}/${rutaRecurso}`, metodoHttp, cuerpoDatos);
+}
+
+// Taller 2: rutas de los módulos del dashboard (ej: "usuarios", "areas/3").
+async function enviarPeticionModulo(rutaRecurso, metodoHttp = "GET", cuerpoDatos = null) {
+  return consumirApi(`${configuracionApp.urlApiBase}/${rutaRecurso}`, metodoHttp, cuerpoDatos);
+}
+
+// Hace la petición real. NUNCA lanza excepciones: siempre devuelve
+// { exito, codigoEstado, mensaje, datos } para que la vista decida qué mostrar.
+async function consumirApi(rutaCompleta, metodoHttp = "GET", cuerpoDatos = null) {
   const cabeceras = { "Content-Type": "application/json" };
   const tokenSesion = obtenerTokenSesion();
   if (tokenSesion) {
     cabeceras["Authorization"] = `Bearer ${tokenSesion}`;
   }
   try {
-    const respuesta = await fetch(`${configuracionApp.urlApi}/${rutaRecurso}`, {
+    const respuesta = await fetch(rutaCompleta, {
       method: metodoHttp,
       headers: cabeceras,
       body: cuerpoDatos ? JSON.stringify(cuerpoDatos) : null

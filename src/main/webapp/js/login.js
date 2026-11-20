@@ -1,7 +1,7 @@
 /* =====================================================================
    login.js  -  Lógica de la vista "Iniciar Sesión"
    Flujo: valida en el cliente -> POST api/autenticacion/login -> guarda JWT
-          -> redirige a bienvenida.html
+          -> redirige a dashboard.html (Taller 2)
    ===================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
   const obtenerTipoUsuario = activarSelectorTipo("selectorTipo");
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Si ya hay sesión activa, no tiene sentido volver a pedir credenciales.
   if (obtenerTokenSesion()) {
-    window.location.href = "bienvenida.html";
+    window.location.href = "dashboard.html";
     return;
   }
 
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (respuesta.exito) {
       guardarSesion(respuesta.datos.token, respuesta.datos.usuario, recordarDispositivo);
       mostrarNotificacion(respuesta.mensaje, "exito");
-      setTimeout(() => (window.location.href = "bienvenida.html"), 700);
+      setTimeout(() => (window.location.href = "dashboard.html"), 700);
     } else {
       mostrarNotificacion(respuesta.mensaje, "error");
     }
